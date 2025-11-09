@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>When Music First Told Stories - Museum Monteverdi (Final Maroon)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-gradient: linear-gradient(to bottom, #4a0e0f, #3a0a0b, #260708);
+      --card: rgba(20,10,10,0.85);
+      --muted:#f3e9e1;
+      --accent-gold:#d4af37;
+      --accent-red:#7a1517;
+      --glass:rgba(255,255,255,0.03);
+      --max-width:1100px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,Segoe UI,Roboto,Helvetica,Arial;
+      background:var(--bg-gradient);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .wrap{max-width:var(--max-width);margin:24px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{
+      width:64px;height:64px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent-red),#3a0a0b);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Playfair Display';font-weight:700;
+      color:var(--accent-gold);font-size:22px
+    }
+    h1.site-title{font-family:'Playfair Display';margin:0;font-size:18px;color:var(--accent-gold)}
+    p.subtitle{margin:0;color:var(--muted);font-size:13px}
+    nav.topnav{display:flex;gap:8px}
+    nav.topnav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+    nav.topnav a:hover{background:rgba(255,255,255,0.05);color:var(--accent-gold)}
+
+    .playlist-card {
+  background: linear-gradient(145deg, rgba(85, 10, 10, 0.9), rgba(40, 5, 5, 0.95));
+  border: 1px solid var(--accent-gold);
+  border-radius: 15px;
+  padding: 20px 25px;
+  box-shadow: 0 0 20px rgba(255, 200, 100, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.playlist-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 25px rgba(255, 200, 100, 0.25);
+}
+
+.playlist-card h3 {
+  color: var(--accent-gold);
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(255, 200, 100, 0.4);
+}
+
+.playlist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.playlist li {
+  margin: 8px 0;
+}
+
+.playlist li a {
+  color: #ffdca8;
+  text-decoration: none;
+  font-weight: 500;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 230, 200, 0.05);
+  transition: all 0.3s ease;
+}
+
+.playlist li a:hover {
+  background: rgba(255, 215, 150, 0.15);
+  color: #fff;
+  transform: translateX(5px);
+}
+.active-song {
+  background: rgba(255, 215, 150, 0.3);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 200, 100, 0.4);
+  transform: scale(1.03);
+}
+
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+      padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)
+    }
+    .hero h2{font-family:'Playfair Display';margin:0 0 8px 0;color:var(--accent-gold)}
+    .hero p{color:var(--muted);line-height:1.6}
+    .placeholder-cover{
+      height:200px;
+      width: 350px;
+      margin: auto;
+      border-radius:10px;
+      background:linear-gradient(135deg,#3a0a0b,#1c0606);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted);font-size:14px
+    }
+    .imgplaceholder-cover{
+        height: 180px;
+        border-radius: 10px;
+    }
+
+    /* Gallery */
+    .gallery-wrap{margin-top:18px}
+    .gallery-title{font-family:'Playfair Display';color:var(--accent-gold);margin-bottom:10px;font-size:18px}
+    .gallery-row{display:flex;gap:18px;overflow-x:auto;padding:12px 6px;scroll-snap-type:x mandatory}
+    .gallery-row::-webkit-scrollbar{height:10px}
+    .gallery-row::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--accent-red),#3b0f11);border-radius:10px}
+    .card{
+      flex:0 0 320px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
+      border:1px solid rgba(255,255,255,0.05);
+      border-radius:12px;scroll-snap-align:start;
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
+      transition:transform .25s ease
+    }
+    .card:hover{transform:translateY(-6px)}
+    .card img{width:100%;height:200px;object-fit:cover;border-top-left-radius:12px;border-top-right-radius:12px}
+    .card .card-body{padding:14px}
+    .card h3{margin:0 0 8px 0;color:var(--accent-gold);font-family:'Playfair Display';font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+
+    /* Main layout */
+    main{margin-top:20px;display:grid;grid-template-columns:1fr 360px;gap:20px}
+    article{
+      background:linear-gradient(180deg,rgba(255,255,255,0.04),transparent);
+      padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)
+    }
+    article h2{font-family:'Playfair Display';color:var(--accent-gold);margin-top:0}
+    article p{color:var(--muted);line-height:1.7}
+
+    /* Song list */
+    .song-list{display:grid;gap:10px;margin-top:12px}
+    .song{
+      padding:12px;border-radius:10px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);
+      border:1px solid rgba(255,255,255,0.05)
+    }
+    .song h4{margin:0 0 6px 0;color:var(--accent-gold)}
+    .song p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Quiz */
+    .quiz{
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
+      padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.05)
+    }
+    .quiz h3{margin-top:0;color:var(--accent-gold)}
+    .q{margin-top:10px}
+    .choices{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+    .choice{
+      background:transparent;border:1px solid rgba(255,255,255,0.05);
+      padding:10px;border-radius:8px;color:var(--muted);cursor:pointer
+    }
+    .choice:hover{border-color:var(--accent-red);color:var(--accent-gold)}
+    .btn{
+      display:inline-block;margin-top:12px;padding:10px 14px;border-radius:8px;
+      background:var(--accent-gold);color:#1b0f0f;font-weight:700;cursor:pointer;border:none
+    }
+
+    footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:24px}
+
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .gallery-row{padding-bottom:18px}
+      main{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">E</div>
+        <div>
+          <h1 class="site-title">When Music First Told Stories</h1>
+          <p class="subtitle">Digital Museum: Claudio Monteverdi</p>
+        </div>
+      </div>
+      <nav class="topnav">
+        <a href="#intro">Intro</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#songs">Song Vibes</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Claudio Monteverdi</h2>
+        <p id="intro">Claudio Monteverdi (1567–1643) adalah komposer Italia yang jadi jembatan penting antara era Renaissance dan Barok. Ia terkenal karena menggabungkan vokal, harmoni, dan unsur dramatis sehingga musik menjadi medium bercerita yang paling terkenal lewat opera <em>L'Orfeo</em> (1607). Karyanya membuka cara baru menyajikan emosi lewat suara.</p>
+        <p style="margin-top:12px;color:var(--muted)"><strong>Kenapa Monteverdi ini penting dan menarik?</strong><br> Monteverdi memperkenalkan teknik dan pendekatan yang mengubah peran musik dari sekadar ritual menjadi alat narasi, yang akhirnya memengaruhi opera, drama musik, dan soundtrack modern.</p>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px" class="placeholder-cover"><img class="imgplaceholder-cover" src="monteverdicover.jpg"></div>
+      </div>
+
+      <aside class="hero-card playlist-card">
+  <h3>Mau sambil dengar lagu?</h3>
+  <ul class="playlist">
+    <li><a href="https://open.spotify.com/search/L'Orfeo%20Monteverdi" target="_blank">🎭 L'Orfeo - Monteverdi</a></li>
+    <li><a href="https://open.spotify.com/search/Orfeo%20Possente%20Spirto" target="_blank">🎶 Orfeo - Possente Spirto</a></li>
+    <li><a href="https://open.spotify.com/search/Bohemian%20Rhapsody" target="_blank">👑 Bohemian Rhapsody - Queen</a></li>
+    <li><a href="https://open.spotify.com/search/All%20Too%20Well" target="_blank">💔 All Too Well (10 min) - Taylor Swift</a></li>
+    <li><a href="https://open.spotify.com/search/Viva%20La%20Vida" target="_blank">🌅 Viva La Vida - Coldplay</a></li>
+    <li><a href="https://open.spotify.com/search/Drivers%20License" target="_blank">🚗 Drivers License - Olivia Rodrigo</a></li>
+    <li><a href="https://open.spotify.com/search/Somebody%20That%20I%20Used%20to%20Know" target="_blank">🎧 Somebody That I Used to Know - Gotye</a></li>
+    <li><a href="https://open.spotify.com/search/Adagio%20for%20Strings%20Barber" target="_blank">🎻 Adagio for Strings - Samuel Barber</a></li>
+  </ul>
+</aside>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery-wrap">
+      <div class="gallery-title">Gallery - Ruang Pamer Monteverdi!</div>
+      <div class="gallery-row" id="galleryRow">
+        <div class="card">
+          <img src="thefirstmelody.jpg" alt="The First Melody">
+          <div class="card-body">
+            <h3>The First Melody</h3>
+            <p>Pengantar kehidupan Monteverdi - dari masa mudanya di Cremona hingga posisi penting di Mantua dan Venice. Ruang ini menampilkan timeline singkat dan pengaruh awal.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="fromsacredtostage.jpg" alt="From Sacred to Stage">
+          <div class="card-body">
+            <h3>From Sacred to Stage</h3>
+            <p>Bagaimana musik gereja dan tradisi vokal mulai berubah menjadi bentuk drama yang lebih personal. Perbandingan antara motet sakral dan adegan opera.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="operaisborn.jpg" alt="Opera Is Born">
+          <div class="card-body">
+            <h3>Opera Is Born</h3>
+            <p>Fokus pada <em>L'Orfeo</em> (1607): struktur, tokoh, dan bagaimana Monteverdi menggunakan instrumen untuk menyampaikan narasi emosional.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="harmonyofemotions.jpg" alt="Harmony of Emotions">
+          <div class="card-body">
+            <h3>Harmony of Emotions</h3>
+            <p>Teknik Monteverdi - basso continuo, monodi, dan polifoni yang dipakai untuk membangun tensi emosional pada adegan tertentu.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="modernrenosance.jpg" alt="Modern Resonance">
+          <div class="card-body">
+            <h3>Modern Resonance</h3>
+            <p>Perbandingan langsung dengan musik modern: bagaimana cara bercerita lewat suara tetap relevan - dari soundtrack film hingga single pop yang dramatis.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="echothroughtime.jpg" alt="Echo Through Time">
+          <div class="card-body">
+            <h3>Echo Through Time</h3>
+            <p>Ruang refleksi: pengaruh Monteverdi terhadap komposer selanjutnya, hingga jejaknya di musik kontemporer dan budaya pop.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Songs + Quiz -->
+    <main>
+      <article id="songs">
+        <h2>Song Vibes - Kenapa lagu modern ini 'se-vibe' dengan Monteverdi</h2>
+        <p>Di bawah ini tiap lagu dipasangkan dengan alasan musikologis dan emosional - dari teknik vokal, struktur naratif, hingga tekstur orkestra - kenapa mereka punya hubungan 'vibe' dengan Monteverdi.</p>
+
+        <div class="song-list">
+          <div class="song"><h4>a. "Exile" - Taylor Swift ft. Bon Iver</h4><p>Dialog vokal dua karakter mirip teknik antiphony/polifoni: saling membalas dan mengekspresikan konflik batin. Pergeseran harmoni dan suasana melankolis paralel dengan adegan-adegan emosional Monteverdi.</p></div>
+          <div class="song"><h4>b. "Hallelujah" - Jeff Buckley (cover)</h4><p>Perpaduan spiritualitas dan ekspresi personal pada vokal, serta ruang hening yang memberi bobot emosional - sejalan dengan karya sakral Monteverdi.</p></div>
+          <div class="song"><h4>c. "Chandelier" - Sia</h4><p>Vokal kuat dengan melisma dan ledakan emosi, mirip teknik vokal dramatik yang Monteverdi gunakan untuk menekankan momen klimaks.</p></div>
+          <div class="song"><h4>d. "Bohemian Rhapsody" - Queen</h4><p>Struktur multi-babak dan peralihan dramatis antara gaya ballad, operatik, dan rock - versi pop-modern dari konsep naratif musikal Monteverdi.</p></div>
+          <div class="song"><h4>e. "Bury a Friend" - Billie Eilish</h4><p>Tekstur sonik yang gelap, penggunaan timbre vokal eksperimental, dan suasana uncanny mengingatkan pada eksplorasi Monteverdi terhadap kontras suara dan efek dramatis.</p></div>
+          <div class="song"><h4>f. "Runaway" - Aurora</h4><p>Narasi melankolis dan karakter vokal rapuh serupa dengan ariosi solo dalam opera Monteverdi - monolog musik yang menampilkan pergulatan batin tokoh.</p></div>
+          <div class="song"><h4>g. "Viva la Vida" - Coldplay</h4><p>Penggunaan motif orkestra megah dan tema historis/tragis menciptakan nuansa epik - sejalan dengan figur musik besar yang Monteverdi gunakan untuk menandai momen dramatis.</p></div>
+          <div class="song"><h4>h. "Adagio for Strings" - Samuel Barber</h4><p>Adagio orkestra yang penuh lirih duka menunjukkan bagaimana instrumen dapat mengangkat intensitas emosional - mirip fungsi orkestra dalam adegan sedih opera klasik.</p></div>
+          <div class="song"><h4>i. "Somebody That I Used to Know" - Gotye</h4><p>Kontrapuntal vokal dan dialog antar-suara membangun penceritaan hubungan - teknik dialog vokal ini punya akar kuat dalam praktik polifoni Renaissance.</p></div>
+          <div class="song"><h4>j. "The Winner Takes It All" - ABBA</h4><p>Balada naratif yang menonjolkan klimaks melodik dan lirik personal - kesinambungan cara bercerita lewat musik dari era Monteverdi hingga pop modern.</p></div>
+        </div>
+      </article>
+
+      <aside id="quiz" class="quiz">
+        <h3>Quiz Interaktif - Which Exhibit Are You?</h3>
+        <p style="color:var(--muted);font-size:13px">Jawab 5 pertanyaan singkat, lalu dapatkan 'exhibit' Monteverdi yang paling cocok dengan kepribadian musikmu.</p>
+        <div id="quizArea"></div>
+        <div style="margin-top:10px">
+          <button class="btn" id="startQuizBtn">Mulai Quiz</button>
+          <button class="btn" id="resetQuizBtn" style="display:none;background:transparent;color:var(--accent-gold);border:1px solid rgba(255,255,255,0.05)">Ulangi</button>
+        </div>
+        <div id="quizResult" style="margin-top:12px;color:var(--muted);"></div>
+      </aside>
+    </main>
+
+    <footer>
+      <p>© 2025 Museum Monteverdi Digital | Dibuat untuk projek sejarah oleh Annisa Elcye Nasywah XI-5"</p>
+    </footer>
+  </div>
+
+  <script>
+  const playlistLinks = document.querySelectorAll('.playlist li a');
+
+  playlistLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      // hapus glow dari semua
+      playlistLinks.forEach(l => l.classList.remove('active-song'));
+      // tambahkan glow ke yang diklik
+      link.classList.add('active-song');
+    });
+  });
+
+  const quizData=[
+    {q:"Suasana musik seperti apa yang kamu suka?",a:["Melankolis tapi elegan","Megah dan teatrikal","Eksperimen dan gelap","Puitis dan lembut"]},
+    {q:"Instrumen favoritmu?",a:["Violin","Piano","Keyboard digital","Vokal manusia"]},
+    {q:"Kalau kamu di atas panggung, kamu ingin jadi...",a:["Penyanyi utama","Penulis lirik","Pencipta suasana","Pengatur harmoni"]},
+    {q:"Apa arti musik buatmu?",a:["Cara meluapkan emosi","Cerita tentang manusia","Eksperimen suara","Tempat berlindung"]},
+    {q:"Kalau Monteverdi hidup sekarang, kamu akan...",a:["Kolaborasi dengannya","Remix karyanya","Menonton konsernya","Membuat film dari musiknya"]}
+  ];
+  const results=[
+    "Kamu cocok dengan ruang 'The First Melody' - klasik, sensitif, dan menyukai keseimbangan.",
+    "Kamu cocok dengan ruang 'From Sacred to Stage' - berpikir mendalam dan penuh rasa spiritual.",
+    "Kamu cocok dengan ruang 'Harmony of Emotions' - ekspresif, dramatis, dan suka dinamika emosi.",
+    "Kamu cocok dengan ruang 'Modern Resonance' - visioner dan terbuka terhadap eksperimen bunyi."
+  ];
+  const startBtn=document.getElementById('startQuizBtn');
+  const resetBtn=document.getElementById('resetQuizBtn');
+  const quizArea=document.getElementById('quizArea');
+  const quizResult=document.getElementById('quizResult');
+  let current=0,score=0;
+  startBtn.onclick=()=>{
+    startBtn.style.display='none';
+    showQ();
+  };
+  function showQ(){
+    if(current<quizData.length){
+      let q=quizData[current];
+      quizArea.innerHTML=`<div class='q'><strong>${q.q}</strong><div class='choices'>${q.a.map((x,i)=>`<div class='choice' data-i='${i}'>${x}</div>`).join('')}</div></div>`;
+      document.querySelectorAll('.choice').forEach(c=>{
+        c.onclick=()=>{
+          score+=c.dataset.i*1;
+          current++;
+          showQ();
+        }
+      })
+    }else{
+      let res=results[score%results.length];
+      quizArea.innerHTML="";
+      quizResult.textContent=res;
+      resetBtn.style.display='inline-block';
+    }
+  }
+  resetBtn.onclick=()=>{
+    current=0;score=0;
+    quizArea.innerHTML="";quizResult.textContent="";
+    startBtn.style.display='inline-block';
+    resetBtn.style.display='none';
+  }
+  </script>
+</body>
+</html>
