@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>When Music First Told Stories - Museum Monteverdi (Final Maroon)</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logorenaissance.png">
   <style>
     :root{
       --bg-gradient: linear-gradient(to bottom, #4a0e0f, #3a0a0b, #260708);
@@ -115,7 +116,7 @@
       color:var(--muted);font-size:14px
     }
     .imgplaceholder-cover{
-        height: 180px;
+        height: 200px;
         border-radius: 10px;
     }
 
@@ -182,13 +183,24 @@
       .gallery-row{padding-bottom:18px}
       main{grid-template-columns:1fr}
     }
+    .imgspotify{
+      height: 50px;
+      align-items: center;
+      align-self: center;
+      align-content: center;
+      margin: auto;
+      border-radius: 10px;
+    }
+    .imglogo{
+      height: 50px;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="logo">E</div>
+        <div class="logo"><img class="imglogo" src="logorenaissance.png"></div>
         <div>
           <h1 class="site-title">When Music First Told Stories</h1>
           <p class="subtitle">Digital Museum: Claudio Monteverdi</p>
@@ -211,7 +223,7 @@
       </div>
 
       <aside class="hero-card playlist-card">
-  <h3>Mau sambil dengar lagu?</h3>
+  <h2>Mau sambil dengar lagu?</h2>
   <ul class="playlist">
     <li><a href="https://open.spotify.com/search/L'Orfeo%20Monteverdi" target="_blank">🎭 L'Orfeo - Monteverdi</a></li>
     <li><a href="https://open.spotify.com/search/Orfeo%20Possente%20Spirto" target="_blank">🎶 Orfeo - Possente Spirto</a></li>
@@ -222,6 +234,8 @@
     <li><a href="https://open.spotify.com/search/Somebody%20That%20I%20Used%20to%20Know" target="_blank">🎧 Somebody That I Used to Know - Gotye</a></li>
     <li><a href="https://open.spotify.com/search/Adagio%20for%20Strings%20Barber" target="_blank">🎻 Adagio for Strings - Samuel Barber</a></li>
   </ul>
+  <h2>Scan spotify code ini untuk membuka playlistnya!</h2><br>
+  <img class="imgspotify" src="spotifycode.jpg">
 </aside>
     </section>
 
@@ -377,3 +391,4 @@
   </script>
 </body>
 </html>
+
