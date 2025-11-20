@@ -256,6 +256,17 @@
   .video-slide iframe { height: 240px; }
 }
 
+    .correct {
+  color: var(--accent-gold);
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(255,215,100,0.3);
+}
+.wrong {
+  color: #ff8a8a;
+  font-weight: 600;
+}
+
+
   </style>
 </head>
 <body>
@@ -372,6 +383,27 @@
     <button class="next">&#10095;</button>
   </div>
 </section>
+
+    <section id="instrumentGame" class="quiz" style="margin-top:35px;">
+  <h3>Guess the Baroque Instrument — Audio Edition!</h3>
+  <p style="font-size:13px;color:var(--muted)">
+    Dengarkan potongan suara instrumen dari era Monteverdi, lalu tebak instrumennya!
+  </p>
+
+  <div id="audioArea" style="text-align:center;margin-top:15px;">
+    <audio id="instAudio" controls style="width:100%; max-width:320px;"></audio>
+  </div>
+
+  <div id="instChoices" class="choices" style="margin-top:16px;"></div>
+
+  <div id="instFeedback" style="margin-top:12px;font-size:14px;height:20px;"></div>
+
+  <button id="instNextBtn" class="btn" 
+    style="display:none;margin-top:16px;background:var(--accent-gold);">
+    Suara Berikutnya
+  </button>
+</section>
+
 
 
     <!-- Songs + Quiz -->
@@ -492,9 +524,78 @@ nextBtn.addEventListener('click', () => {
     startBtn.style.display='inline-block';
     resetBtn.style.display='none';
   }
+
+    // ============================
+// Guess the Instrument - AUDIO VERSION
+// ============================
+
+const instrumentAudioData = [
+  {
+    name: "Theorbo",
+    audio: "theorbo.mp3",
+    choices: ["Harp", "Lute", "Theorbo"]
+  },
+  {
+    name: "Harpsichord",
+    audio: "harpsichord.mp3",
+    choices: ["Piano", "Organ", "Harpsichord"]
+  },
+  {
+    name: "Cornetto",
+    audio: "cornetto.mp3",
+    choices: ["Trumpet", "Cornetto", "Flute"]
+  },
+  {
+    name: "Viola da Gamba",
+    audio: "violadagamba.mp3",
+    choices: ["Violin", "Viola da Gamba", "Cello"]
+  }
+];
+
+let instIndex = 0;
+
+const instAudio = document.getElementById("instAudio");
+const instChoicesBox = document.getElementById("instChoices");
+const instFeedbackBox = document.getElementById("instFeedback");
+const instNextBtn = document.getElementById("instNextBtn");
+
+function loadInstrumentAudio() {
+  let item = instrumentAudioData[instIndex];
+
+  instAudio.src = item.audio;
+  instFeedbackBox.textContent = "";
+  instNextBtn.style.display = "none";
+
+  instChoicesBox.innerHTML = item.choices
+    .map(c => `<div class="choice" data-name="${c}">${c}</div>`)
+    .join("");
+
+  document.querySelectorAll("#instChoices .choice").forEach(choice => {
+    choice.onclick = () => {
+      if (choice.dataset.name === item.name) {
+        instFeedbackBox.textContent = "Benar! Ini suara " + item.name;
+        instFeedbackBox.className = "correct";
+      } else {
+        instFeedbackBox.textContent = "Salah! Itu sebenarnya " + item.name;
+        instFeedbackBox.className = "wrong";
+      }
+      instNextBtn.style.display = "inline-block";
+    };
+  });
+}
+
+instNextBtn.onclick = () => {
+  instIndex = (instIndex + 1) % instrumentAudioData.length;
+  loadInstrumentAudio();
+};
+
+// init
+loadInstrumentAudio();
+
   </script>
 </body>
 </html>
+
 
 
 
